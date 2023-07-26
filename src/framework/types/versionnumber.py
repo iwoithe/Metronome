@@ -17,7 +17,7 @@ class VersionNumberSuffix(Enum):
                 return "beta"
                 break
             VersionNumberSuffix.DEVELOPMENT:
-                return "development"
+                return "dev"
                 break
             VersionNumberSuffix.RELEASE:
                 return "release"
