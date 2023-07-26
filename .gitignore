@@ -1,0 +1,13 @@
+# Ignore IDE files/directories
+.idea/
+.vscode/
+
+# Ignore pycache
+__pycache__
+
+# Ignore pyinstaller build
+dist
+build
+*.spec
+
+*_qrc.py
