@@ -8,6 +8,7 @@ import appshell.module
 
 from .constants import Constants
 
+
 class App:
     def run(self) -> int:
         # TODO: Add a logging class
