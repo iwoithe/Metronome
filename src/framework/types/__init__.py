@@ -1,1 +1,1 @@
-from versionnumber import VersionNumber, VersionNumberSuffix
+from framework.types.versionnumber import VersionNumber, VersionNumberSuffix

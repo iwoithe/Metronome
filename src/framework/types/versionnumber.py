@@ -1,31 +1,27 @@
 from enum import Enum
 
 class VersionNumberSuffix(Enum):
-    ALPHA
-    BETA
-    DEVELOPMENT
-    RELEASE
-    RELEASE_CANDIDATE
+    ALPHA = 1
+    BETA = 2
+    DEVELOPMENT = 3
+    RELEASE = 4
+    RELEASE_CANDIDATE = 5
 
     @staticmethod
-    def toString(suffix: VersionNumberSuffix) -> str:
-        match suffix:
-            VersionNumberSuffix.ALPHA:
-                return "alpha"
-                break
-            VersionNumberSuffix.BETA:
-                return "beta"
-                break
-            VersionNumberSuffix.DEVELOPMENT:
-                return "dev"
-                break
-            VersionNumberSuffix.RELEASE:
-                return "release"
-                break
-            VersionNumberSuffix.RELEASE_CANDIDATE:
-                return "release candidate"
-                break
-            break
+    def toString(suffix) -> str:
+        # TODO: Use match statement (need to update Python)
+        if suffix == VersionNumberSuffix.ALPHA:
+            return "alpha"
+        elif suffix == VersionNumberSuffix.BETA:
+            return "beta"
+        elif suffix == VersionNumberSuffix.DEVELOPMENT:
+            return "dev"
+        elif suffix == VersionNumberSuffix.RELEASE:
+            return "release"
+        elif suffix == VersionNumberSuffix.RELEASE_CANDIDATE:
+            return "release candidate"
+        else:
+            return ""
 
 class VersionNumber():
     def __init__(self, major: int, minor: int, micro: int, suffix: VersionNumberSuffix = VersionNumberSuffix.RELEASE, suffixNum: int = 0) -> None:
@@ -36,4 +32,12 @@ class VersionNumber():
         self.suffixNum = suffixNum
 
     def __str__(self) -> str:
-        return f"{self.major}.{self.minor}.{self.micro}-{VersionNumberSuffix.toString(self.suffix) if self.suffix != VersionNumberSuffix.RELEASE}{"." if self.suffix != VersionNumberSuffix.RELEASE}{self.suffixNum if self.suffix !=(VersionNumberSuffix.DEVELOPMENT | VersionNumberSuffix().RELEASE)}"
+        suffix: str = ""
+        if self.suffix != VersionNumberSuffix.RELEASE:
+            suffix = "-" + VersionNumberSuffix.toString(self.suffix)
+
+        suffixNum: str = ""
+        if self.suffix not in [VersionNumberSuffix.DEVELOPMENT, VersionNumberSuffix.RELEASE]:
+            suffixNum = "." + str(self.suffixNum)
+
+        return f"{self.major}.{self.minor}.{self.micro}{suffix}{suffixNum}"
