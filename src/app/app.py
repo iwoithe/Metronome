@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QApplication
 
 import appshell.module
 
-from app.constants import Constants
+from .constants import Constants
 
 class App:
     def run(self) -> int:

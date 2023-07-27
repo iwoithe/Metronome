@@ -1,2 +1,2 @@
-from app.app import App
-from app.constants import Constants
+from .app import App
+from .constants import Constants
