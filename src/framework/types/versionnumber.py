@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class VersionNumberSuffix(Enum):
     ALPHA = 1
     BETA = 2
@@ -23,8 +24,10 @@ class VersionNumberSuffix(Enum):
         else:
             return ""
 
-class VersionNumber():
-    def __init__(self, major: int, minor: int, micro: int, suffix: VersionNumberSuffix = VersionNumberSuffix.RELEASE, suffixNum: int = 0) -> None:
+
+class VersionNumber:
+    def __init__(self, major: int, minor: int, micro: int, suffix: VersionNumberSuffix = VersionNumberSuffix.RELEASE,
+                 suffixNum: int = 0) -> None:
         self.major = major
         self.minor = minor
         self.micro = micro
