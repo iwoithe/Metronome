@@ -1,12 +1,19 @@
 import sys
+import logging
 
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtWidgets import QApplication
+
+import appshell.module
 
 from app.constants import Constants
 
 class App:
     def run(self) -> int:
+        # TODO: Add a logging class
+        logging.basicConfig(level=logging.DEBUG)
+        logging.debug(Constants.APP_NAME + " " + str(Constants.APP_VERSION))
+
         app = QApplication(sys.argv)
         app.setApplicationName(Constants.APP_NAME)
         app.setOrganizationName(Constants.APP_AUTHOR)
@@ -15,7 +22,6 @@ class App:
         engine = QQmlApplicationEngine()
 
         engine.quit.connect(app.quit)
-        # TODO: Add main.qml file
-        # engine.load("qrc:/appshell/main.qml")
+        engine.load(":/qml/main.qml")
 
         return app.exec()
