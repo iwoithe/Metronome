@@ -4,6 +4,7 @@
 
 # Ignore pycache
 __pycache__
+.pytest_cache
 
 # Ignore pyinstaller build
 dist
