@@ -1,4 +1,7 @@
-from PySide6.QtGui import QApplication
+import sys
+
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtWidgets import QApplication
 
 from app.constants import Constants
 
