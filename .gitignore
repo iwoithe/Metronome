@@ -12,3 +12,4 @@ build
 *.spec
 
 *_qrc.py
+module.py
