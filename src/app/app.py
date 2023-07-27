@@ -3,7 +3,7 @@ from PySide6.QtGui import QApplication
 from app.constants import Constants
 
 class App:
-    def run() -> int:
+    def run(self) -> int:
         app = QApplication(sys.argv)
         app.setApplicationName(Constants.APP_NAME)
         app.setOrganizationName(Constants.APP_AUTHOR)
