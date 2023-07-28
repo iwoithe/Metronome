@@ -22,6 +22,7 @@ class App:
 
         engine = QQmlApplicationEngine()
 
+        engine.warnings.connect(lambda text: print(text))
         engine.quit.connect(app.quit)
         engine.load(":/qml/main.qml")
 
