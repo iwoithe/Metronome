@@ -34,6 +34,8 @@ Where `<type>` is:
 - :whale: `:whale:` a commit for CI/CD related stuff
 - :rewind: `:rewind:` a commit that reverts changes
 - :paperclip: `:paperclip:` a commit with other not relevant changes
+- :test_tube: `:test_tube:` a commit for tests
+- :hammer_and_wrench: `:hammer_and_wrench` a commit for developer tools, for example shell scripts
 - :arrow_up: `:arrow_up:` a commit with dependencies updates
 
 Each commit should have:

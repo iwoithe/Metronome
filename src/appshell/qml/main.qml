@@ -6,4 +6,6 @@ Window {
 
     width: 960
     height: 640
+
+    color: Theme.backgroundColor()
 }
