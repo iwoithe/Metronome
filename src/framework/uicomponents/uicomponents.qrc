@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file>qml/Metronome/UiComponents/MButton.qml</file>
+    <file>qml/Metronome/UiComponents/qmldir</file>
+</qresource>
+</RCC>

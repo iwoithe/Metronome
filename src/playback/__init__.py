@@ -1,0 +1,1 @@
+from .playbackmodule import registerTypes

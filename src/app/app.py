@@ -7,7 +7,9 @@ from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterUncreatableType
 
 from .constants import Constants
 
-import appshell.module
+import appshell.resources
+import framework.uicomponents.resources
+import playback
 
 from framework.ui import Theme
 
@@ -33,9 +35,12 @@ class App:
         # qmlRegisterUncreatableType(Theme, "Metronome.Ui", 1, 0, "Theme", "Cannot create a Theme")
         self.engine.rootContext().setContextProperty("Theme", self.theme)
 
+        playback.registerTypes()
+
     def run(self) -> int:
         logging.debug(Constants.APP_NAME + " " + str(Constants.APP_VERSION))
         self.engine = QQmlApplicationEngine()
+        self.engine.addImportPath(":/qml")
 
         self.initTypes()
 
