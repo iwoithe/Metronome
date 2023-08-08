@@ -1,5 +1,13 @@
 # Metronome
 
+A simple, yet featureful metronome app for desktop
+
+> [!IMPORTANT]  
+> Metronome is WIP and as such is not complete in anyway
+
+
+![Screenshot of the home page of Metronome](./assets/home.png)
+
 ## How to Run
 
 <!-- TODO: Write proper instructions -->
@@ -24,7 +32,6 @@ Thanks to these projects for making Metronome possible. :)
 
 - PySide6
 - PyTest
-- Bevy (https://github.com/ZechCodes/Bevy)
 
 ## License
 
