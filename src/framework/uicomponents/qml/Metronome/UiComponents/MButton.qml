@@ -19,23 +19,7 @@ Item {
     Rectangle {
         id: bgRect
         anchors.fill: parent
-        color: {
-            if (root.flat && !root.hovered) {
-                return "transparent"
-            } else if (root.flat && root.hovered) {
-                return Theme.foregroundColor()
-            }
-
-            if (root.toggle && root.toggled) {
-                return Theme.foregroundColor()
-            }
-
-            if (root.hovered) {
-                return Theme.foregroundColor()
-            }
-
-            return "transparent"
-        }
+        color: Theme.backgroundColor()
         radius: 30
 
         border.width: root.flat ? 0 : 2
@@ -49,23 +33,7 @@ Item {
         font.pointSize: 14
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        color: {
-            if (root.flat && !root.hovered) {
-                return Theme.foregroundColor()
-            } else if (root.flat && root.hovered) {
-                return Theme.invertedForegroundColor()
-            }
-
-            if (root.toggle && root.toggled) {
-                return Theme.invertedForegroundColor()
-            }
-
-            if (root.hovered) {
-                return Theme.invertedForegroundColor()
-            }
-
-            return Theme.foregroundColor()
-        }
+        color: Theme.foregroundColor()
     }
 
     MouseArea {
@@ -81,4 +49,68 @@ Item {
             root.hoveredChanged()
         }
     }
+
+    states: [
+        State {
+            name: "FLAT"
+            when: root.flat
+            PropertyChanges {
+                bgRect {
+                    color: Theme.backgroundColor()
+                    border.width: 2
+                    border.color: Theme.foregroundColor()
+                }
+
+                textLabel.color: Theme.foregroundColor()
+            }
+        },
+        State {
+            name: "FLAT_HOVERED"
+            when: root.flat && root.hovered
+            PropertyChanges {
+                bgRect {
+                    color: Theme.foregroundColor()
+                    border.width: 0
+                }
+
+                textLabel.color: Theme.invertedForegroundColor()
+            }
+        },
+        State {
+            name: "TOGGLED"
+            when: root.toggle && root.toggled
+            PropertyChanges {
+                bgRect {
+                    color: Theme.foregroundColor()
+                    border.width: 0
+                }
+
+                textLabel.color: Theme.invertedForegroundColor()
+            }
+        },
+        State {
+            name: "HOVERED"
+            when: root.hovered && !root.toggled
+            PropertyChanges {
+                bgRect {
+                    color: Theme.foregroundColor()
+                    border.width: 0
+                }
+
+                textLabel.color: Theme.invertedForegroundColor()
+            }
+        },
+        State {
+            name: "TOGGLE_HOVERED"
+            when: root.hovered && root.toggle && root.toggled
+            PropertyChanges {
+                bgRect {
+                    color: Theme.backgroundColor()
+                    border.width: 2
+                }
+
+                textLabel.color: Theme.foregroundColor()
+            }
+        }
+    ]
 }
