@@ -1,10 +1,8 @@
+:construction: **Metronome is still a WIP with missing features and various bugs**
+
 # Metronome
 
 A simple, yet featureful metronome app for desktop
-
-> [!IMPORTANT]  
-> Metronome is WIP and as such is not complete in anyway
-
 
 ![Screenshot of the home page of Metronome](./assets/home.png)
 
