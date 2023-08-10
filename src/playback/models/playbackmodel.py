@@ -10,6 +10,7 @@ import share.resources
 
 class PlaybackModel(QAbstractListModel):
     accentsModelChanged = Signal(AccentsModel)
+    bpmChanged = Signal(int)
 
     def __init__(self) -> None:
         QAbstractListModel.__init__(self)
@@ -43,6 +44,16 @@ class PlaybackModel(QAbstractListModel):
             self.accentsModelChanged.emit(self.__accentsModel)
 
     accentsModel = Property(QObject, fget=accentsModel, fset=setAccentsModel, notify=accentsModelChanged)
+
+    def bpm(self) -> int:
+        return self.__bpm
+
+    def setBpm(self, val: int):
+        if self.__bpm != val:
+            self.__bpm = val
+            self.bpmChanged.emit(self.__bpm)
+
+    bpm = Property(int, fget=bpm, fset=setBpm, notify=bpmChanged)
 
     @Slot()
     def play(self) -> None:
