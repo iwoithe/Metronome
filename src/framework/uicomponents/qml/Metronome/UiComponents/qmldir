@@ -1,2 +1,3 @@
 module Metronome.UiComponents
 MButton 1.0 MButton.qml
+MPlayButton 1.0 MPlayButton.qml

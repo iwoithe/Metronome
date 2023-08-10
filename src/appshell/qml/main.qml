@@ -19,17 +19,9 @@ Window {
 
         spacing: 40
 
-        MButton {
+        MPlayButton {
             id: playButton
-            text: qsTr("Play")
-            toggle: true
-            onClicked: {
-                if (toggled) {
-                    playbackModel.play()
-                } else {
-                    playbackModel.stop()
-                }
-            }
+            playbackModel: playbackModel
         }
 
         MButton {
