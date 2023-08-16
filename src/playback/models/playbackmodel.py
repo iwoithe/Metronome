@@ -1,6 +1,6 @@
 from framework.types import TimeSignature, TimeSignatureCursor
 
-from PySide6.QtCore import QAbstractListModel, QTimer, Slot, Signal, Property, QObject, QUrl
+from PySide6.QtCore import QTimer, Slot, Signal, Property, QObject, QUrl
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 from .accentsmodel import AccentsModel
@@ -8,12 +8,12 @@ from .accentsmodel import AccentsModel
 import share.resources
 
 
-class PlaybackModel(QAbstractListModel):
-    accentsModelChanged = Signal(AccentsModel)
-    bpmChanged = Signal(int)
+class PlaybackModel(QObject):
+    accentsModelChanged = Signal(AccentsModel, arguments=["accentsModel"])
+    bpmChanged = Signal(int, arguments=["bpm"])
 
     def __init__(self) -> None:
-        QAbstractListModel.__init__(self)
+        QObject.__init__(self)
 
         self.__accentsModel: AccentsModel = None
 

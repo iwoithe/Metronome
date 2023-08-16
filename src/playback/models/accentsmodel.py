@@ -1,10 +1,10 @@
-from PySide6.QtCore import QAbstractListModel, Slot
+from PySide6.QtCore import QObject, Slot
 
 
-class AccentsModel(QAbstractListModel):
+class AccentsModel(QObject):
     # TODO: Receive changes from time signature
     def __init__(self) -> None:
-        QAbstractListModel.__init__(self)
+        QObject.__init__(self)
 
         self.__accentsData = {}
 

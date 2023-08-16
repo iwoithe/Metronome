@@ -10,6 +10,7 @@ from .constants import Constants
 import appshell.resources
 import framework.uicomponents.resources
 import playback
+import settings
 
 from framework.ui import Theme
 
@@ -36,6 +37,7 @@ class App:
         self.engine.rootContext().setContextProperty("Theme", self.theme)
 
         playback.registerTypes()
+        settings.registerTypes()
 
     def run(self) -> int:
         logging.debug(Constants.APP_NAME + " " + str(Constants.APP_VERSION))
