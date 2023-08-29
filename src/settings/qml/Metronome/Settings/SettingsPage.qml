@@ -8,6 +8,8 @@ import Metronome.UiComponents
 Item {
     id: root
 
+    property int buttonGapY: 20
+
     StackView {
         id: settingsPageView
         initialItem: settingsButtonsView
@@ -37,7 +39,7 @@ Item {
             }
 
             cellWidth: parent.width / 2
-            cellHeight: 60
+            cellHeight: 60 + (2 * root.buttonGapY)
 
             model: settingsModel
 
