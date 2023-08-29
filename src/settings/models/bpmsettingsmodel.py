@@ -1,4 +1,5 @@
 from PySide6.QtCore import QObject, Signal, Property, Slot
+from pydispatch import dispatcher
 
 
 class BpmSettingsModel(QObject):
@@ -16,6 +17,7 @@ class BpmSettingsModel(QObject):
         if self.__bpm != val:
             self.__bpm = val
             self.bpmChanged.emit(self.__bpm)
+            dispatcher.send("bpmChanged", self, self.__bpm)
 
     bpm = Property(int, fget=bpm, fset=setBpm, notify=bpmChanged)
 

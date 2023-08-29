@@ -3,6 +3,8 @@ from framework.types import TimeSignature, TimeSignatureCursor
 from PySide6.QtCore import QTimer, Slot, Signal, Property, QObject, QUrl
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
+from pydispatch import dispatcher
+
 from .accentsmodel import AccentsModel
 
 import share.resources
@@ -34,6 +36,8 @@ class PlaybackModel(QObject):
         self.__normalMediaPlayer: QMediaPlayer = QMediaPlayer()
         self.__normalMediaPlayer.setAudioOutput(self.__normalOutput)
         self.__normalMediaPlayer.setSource(QUrl("qrc:/audio/defaults/normal.wav"))
+
+        dispatcher.connect(self.setBpm, "bpmChanged")
 
     def accentsModel(self) -> QObject:
         return self.__accentsModel
