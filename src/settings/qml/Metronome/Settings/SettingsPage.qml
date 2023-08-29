@@ -54,4 +54,11 @@ Item {
     Loader {
         id: settingsPageLoader
     }
+
+    Connections {
+        target: settingsPageLoader.item
+        function onPopPage() {
+            settingsPageView.pop()
+        }
+    }
 }

@@ -1,3 +1,4 @@
 module Metronome.Settings
 BpmSettingsPage 1.0 BpmSettingsPage.qml
 SettingsPage 1.0 SettingsPage.qml
+SettingsPageView 1.0 SettingsPageView.qml

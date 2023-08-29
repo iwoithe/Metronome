@@ -5,7 +5,7 @@ import QtQuick.Layouts
 import Metronome.Settings
 import Metronome.UiComponents
 
-Item {
+SettingsPageView {
     id: root
 
     BpmSettingsModel {
@@ -14,6 +14,7 @@ Item {
 
     SpinBox {
         id: bpmSpinBox
+        anchors.centerIn: parent
         value: settingsModel.bpm
         onValueModified: settingsModel.bpm = value
         from: 1

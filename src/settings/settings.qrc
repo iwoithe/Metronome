@@ -4,5 +4,6 @@
     <file>qml/Metronome/Settings/BpmSettingsPage.qml</file>
     <file>qml/Metronome/Settings/qmldir</file>
     <file>qml/Metronome/Settings/SettingsPage.qml</file>
+    <file>qml/Metronome/Settings/SettingsPageView.qml</file>
 </qresource>
 </RCC>
