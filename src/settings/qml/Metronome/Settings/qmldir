@@ -1,4 +1,6 @@
 module Metronome.Settings
+AccentsSettingsPage 1.0 AccentsSettingsPage.qml
 BpmSettingsPage 1.0 BpmSettingsPage.qml
 SettingsPage 1.0 SettingsPage.qml
 SettingsPageView 1.0 SettingsPageView.qml
+TimeSignatureSettingsPage 1.0 TimeSignatureSettingsPage.qml

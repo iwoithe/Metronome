@@ -60,7 +60,8 @@ class SettingsModel(QAbstractListModel):
     @Slot()
     def load(self) -> None:
         self.beginResetModel()
-        self.addSettingsPage("accents", "Accents", "qrc:/qml/Metronome/Settings/BpmSettingsPage.qml")
+        self.addSettingsPage("accents", "Accents", "qrc:/qml/Metronome/Settings/AccentsSettingsPage.qml")
         self.addSettingsPage("bpm", "BPM", "qrc:/qml/Metronome/Settings/BpmSettingsPage.qml")
+        self.addSettingsPage("time-signature", "Time Signature", "qrc:/qml/Metronome/Settings/TimeSignatureSettingsPage.qml")
         self.endResetModel()
         self.layoutChanged.emit()
