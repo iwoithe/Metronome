@@ -30,6 +30,7 @@ Thanks to these projects for making Metronome possible. :)
 
 - PySide6
 - PyTest
+- [PyDispatcher](https://github.com/mcfletch/pydispatcher)
 
 ## License
 
