@@ -12,6 +12,8 @@ SettingsPageView {
         id: settingsModel
     }
 
+    // TODO: Add option to choose tempo from tempo markings, e.g. allegro, moderato etc.
+
     SpinBox {
         id: bpmSpinBox
         anchors.centerIn: parent
