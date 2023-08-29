@@ -64,6 +64,7 @@ Window {
         SettingsPage {
             id: settingsPage
             Layout.fillWidth: true
+            Layout.fillHeight: true
             visible: root.settingsPageToggled
         }
     }

@@ -3,6 +3,7 @@
 <qresource>
     <file>qml/Metronome/UiComponents/MButton.qml</file>
     <file>qml/Metronome/UiComponents/MPlayButton.qml</file>
+    <file>qml/Metronome/UiComponents/MScrollBar.qml</file>
     <file>qml/Metronome/UiComponents/qmldir</file>
 </qresource>
 </RCC>

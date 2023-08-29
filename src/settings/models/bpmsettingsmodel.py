@@ -1,4 +1,4 @@
-from PySide6.QtCore import QObject, Signal, Property
+from PySide6.QtCore import QObject, Signal, Property, Slot
 
 
 class BpmSettingsModel(QObject):
@@ -18,3 +18,7 @@ class BpmSettingsModel(QObject):
             self.bpmChanged.emit(self.__bpm)
 
     bpm = Property(int, fget=bpm, fset=setBpm, notify=bpmChanged)
+
+    @Slot()
+    def load(self) -> None:
+        pass
