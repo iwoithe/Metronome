@@ -41,12 +41,14 @@ Item {
             text: root.playbackModel.bpm
             font.pointSize: 48
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            color: Theme.foregroundColor()
         }
 
         Label {
             text: qsTr("BPM")
             font.pointSize: 14
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            color: Theme.foregroundColor()
         }
     }
 
