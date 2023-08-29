@@ -16,6 +16,8 @@ Item {
         id: bpmSpinBox
         value: settingsModel.bpm
         onValueModified: settingsModel.bpm = value
+        from: 1
+        to: 400
     }
 
     Component.onCompleted: settingsModel.load()
