@@ -7,6 +7,8 @@ from pydispatch import dispatcher
 
 from .accentsmodel import AccentsModel
 
+from settings.models import TimeSignatureSettingsModel
+
 import share.resources
 
 
@@ -38,6 +40,8 @@ class PlaybackModel(QObject):
         self.__normalMediaPlayer.setSource(QUrl("qrc:/audio/defaults/normal.wav"))
 
         dispatcher.connect(self.setBpm, "bpmChanged")
+        dispatcher.connect(self.setNumerator, "numeratorChanged")
+        dispatcher.connect(self.setDenominator, "denominatorChanged")
 
     def accentsModel(self) -> QObject:
         return self.__accentsModel
@@ -58,6 +62,12 @@ class PlaybackModel(QObject):
             self.bpmChanged.emit(self.__bpm)
 
     bpm = Property(int, fget=bpm, fset=setBpm, notify=bpmChanged)
+
+    def setNumerator(self, val: int) -> None:
+        self.__timeSignature.setNumerator(val)
+
+    def setDenominator(self, val: int) -> None:
+        self.__timeSignature.setDenominator(val)
 
     @Slot()
     def play(self) -> None:

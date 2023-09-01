@@ -7,10 +7,12 @@ class TimeSignature:
         return self.__numerator
 
     def setNumerator(self, val: int) -> None:
-        self.__numerator = val
+        if self.__numerator != val:
+            self.__numerator = val
 
     def denominator(self) -> int:
         return self.__denominator
 
     def setDenominator(self, val: int) -> None:
-        self.__denominator = val
+        if self.__denominator != val:
+            self.__denominator = val
