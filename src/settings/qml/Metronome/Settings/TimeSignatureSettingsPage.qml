@@ -12,13 +12,25 @@ SettingsPageView {
         id: settingsModel
     }
 
-    Row {
+    ColumnLayout {
         anchors.centerIn: parent
+        spacing: 20
 
-        Column {
+        Label {
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            color: Theme.foregroundColor()
+            text: qsTr("Time signature")
+            font.bold: true
+            font.pixelSize: 18
+        }
+
+        RowLayout {
+            spacing: 20
+
             MButton {
-                text: qsTr("Up")
-                onClicked: settingsModel.numerator += 1
+                Layout.preferredWidth: 60
+                text: qsTr("-")
+                onClicked: settingsModel.numerator -= 1
             }
 
             Label {
@@ -27,15 +39,19 @@ SettingsPageView {
             }
 
             MButton {
-                text: qsTr("Down")
-                onClicked: settingsModel.numerator -= 1
+                Layout.preferredWidth: 60
+                text: qsTr("+")
+                onClicked: settingsModel.numerator += 1
             }
         }
 
-        Column {
+        RowLayout {
+            spacing: 20
+
             MButton {
-                text: qsTr("Up")
-                onClicked: settingsModel.denominator += 1
+                Layout.preferredWidth: 60
+                text: qsTr("-")
+                onClicked: settingsModel.denominator -= 1
             }
 
             Label {
@@ -44,8 +60,9 @@ SettingsPageView {
             }
 
             MButton {
-                text: qsTr("Down")
-                onClicked: settingsModel.denominator -= 1
+                Layout.preferredWidth: 60
+                text: qsTr("+")
+                onClicked: settingsModel.denominator += 1
             }
         }
     }

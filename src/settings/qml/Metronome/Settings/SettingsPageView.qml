@@ -11,9 +11,15 @@ Item {
 
     signal popPage
 
+    Rectangle {
+        anchors.fill: parent
+        color: Theme.backgroundColor()
+    }
+
     MButton {
         anchors.left: parent.left
         anchors.top: parent.top
+        width: 60
         text: qsTr("Back")
         onClicked: root.popPage()
     }

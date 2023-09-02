@@ -9,11 +9,48 @@ Item {
     id: root
 
     property int buttonGapY: 20
+    property int transitionDuration: 200
 
     StackView {
         id: settingsPageView
         initialItem: settingsButtonsView
         anchors.fill: parent
+
+        pushEnter: Transition {
+            PropertyAnimation {
+                property: "x"
+                from: root.width
+                to: 0
+                duration: root.transitionDuration
+            }
+        }
+
+        pushExit: Transition {
+            PropertyAnimation {
+                property: "x"
+                from: 0
+                to: 0
+                duration: root.transitionDuration
+            }
+        }
+
+        popEnter: Transition {
+            PropertyAnimation {
+                property: "x"
+                from: 0
+                to: 0
+                duration: root.transitionDuration
+            }
+        }
+
+        popExit: Transition {
+            PropertyAnimation {
+                property: "x"
+                from: 0
+                to: root.width
+                duration: root.transitionDuration
+            }
+        }
     }
 
     SettingsModel {
