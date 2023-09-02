@@ -31,15 +31,17 @@ Window {
     }
 
     RowLayout {
+        id: mainLayout
         spacing: 40
 
         anchors.fill: parent
         anchors.margins: 20
 
         ColumnLayout {
+            id: controlsLayout
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-            implicitWidth: 280
+            Layout.preferredWidth: 280
 
             spacing: 40
 
@@ -63,9 +65,13 @@ Window {
 
         SettingsPage {
             id: settingsPage
-            Layout.fillWidth: true
             Layout.fillHeight: true
             visible: root.settingsPageToggled
+            // Use the following instead of Layout.fillWidth so the behavior animation works
+            implicitWidth: visible ? root.width - (mainLayout.anchors.leftMargin + controlsLayout.width + mainLayout.anchors.rightMargin) : 0
+
+            // TODO: Animate the settings page in *and* out
+            Behavior on implicitWidth { NumberAnimation { duration: 200 } }
         }
     }
 }
