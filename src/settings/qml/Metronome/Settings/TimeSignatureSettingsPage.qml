@@ -26,6 +26,7 @@ SettingsPageView {
 
         RowLayout {
             spacing: 20
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
             MButton {
                 Layout.preferredWidth: 60
@@ -47,6 +48,7 @@ SettingsPageView {
 
         RowLayout {
             spacing: 20
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
             MButton {
                 Layout.preferredWidth: 60
