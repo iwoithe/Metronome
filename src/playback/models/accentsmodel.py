@@ -1,5 +1,7 @@
 from PySide6.QtCore import QObject, Slot
 
+from pydispatch import dispatcher
+
 
 class AccentsModel(QObject):
     # TODO: Receive changes from time signature
@@ -7,6 +9,8 @@ class AccentsModel(QObject):
         QObject.__init__(self)
 
         self.__accentsData = {}
+
+        dispatcher.connect(self.setNumerator, "numeratorChanged")
 
     @Slot(int, result=bool)
     def isAccented(self, beatNum: int) -> bool:
@@ -23,4 +27,7 @@ class AccentsModel(QObject):
     def setNumerator(self, val: int) -> None:
         self.resetData()
         for i in range(val):
-            self.__accentsData[i + 1] = False
+            if i == 0:
+                self.__accentsData[i + 1] = True
+            else:
+                self.__accentsData[i + 1] = False
