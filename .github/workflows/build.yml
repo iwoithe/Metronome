@@ -33,7 +33,7 @@ jobs:
           --name "Metronome" \
           --windowed \
           --onefile \
-          main.py
+          __main__.py
 
     - name: Upload the Build Artifact
       uses: actions/upload-artifact@v3.0.0
@@ -77,7 +77,7 @@ jobs:
           --name "Metronome" \
           --windowed \
           --onefile \
-          main.py
+          __main__.py
 
     - name: Upload the Build Artifact
       uses: actions/upload-artifact@v3.0.0
@@ -117,7 +117,7 @@ jobs:
     - name: Build
       run: |
         cd src/
-        pyinstaller --name "Metronome" --windowed --onefile --icon assets/icon.ico main.py
+        pyinstaller --name "Metronome" --windowed --onefile --icon assets/icon.ico __main__.py
 
     - name: Upload the Build Artifact
       uses: actions/upload-artifact@v3.0.0
