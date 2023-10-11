@@ -9,6 +9,8 @@ import Metronome.UiComponents
 SettingsPageView {
     id: root
 
+    property int bpmChangeAmount: 1
+
     BpmSettingsModel {
         id: settingsModel
     }
@@ -33,7 +35,7 @@ SettingsPageView {
             MButton {
                 Layout.preferredWidth: 60
                 text: "-"
-                onClicked: settingsModel.bpm -= 1
+                onClicked: settingsModel.bpm -= root.bpmChangeAmount
             }
 
             Label {
@@ -44,7 +46,7 @@ SettingsPageView {
             MButton {
                 Layout.preferredWidth: 60
                 text: "+"
-                onClicked: settingsModel.bpm += 1
+                onClicked: settingsModel.bpm += root.bpmChangeAmount
             }
         }
     }
