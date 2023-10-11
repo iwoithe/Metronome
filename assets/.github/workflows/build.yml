@@ -1,0 +1,142 @@
+name: Build
+
+on:
+  push:
+    # TODO: Expire all artifacts but the ones for the most recent commit for `main`
+    branches: [ main ]
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  linux_build:
+    name: Build - Linux
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"
+
+    - name: Install Dependencies and Build Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt pyinstaller
+    - name: Build
+      run: |
+        cd src/
+        pyinstaller \
+          --name "Metronome" \
+          --windowed \
+          --onefile \
+#          --icon assets/icon.ico \
+          main.py
+
+    - name: Upload the Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: Metronome Linux
+        path: "src/dist/Metronome/*"
+
+    - name: Zip
+      uses: papeloto/action-zip@v1
+      with:
+        files: "src/dist/Metronome/"
+        dest: Metronome-Linux.zip
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: Metronome-Linux.zip
+
+  macos_build:
+    name: Build - macOS
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"
+
+    - name: Install Dependencies and Build Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt pillow pyinstaller
+
+    - name: Build
+      run: |
+        cd src/
+        pyinstaller \
+          --name "Metronome" \
+          --windowed \
+          --onefile \
+#          --icon assets/icon.ico \
+          main.py
+
+    - name: Upload the Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: Metronome macOS
+        path: "src/dist/Metronome/"
+
+    - name: Zip
+      uses: papeloto/action-zip@v1
+      with:
+        files: "src/dist/Metronome/"
+        dest: Metronome-macOS.zip
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: Metronome-macOS.zip
+
+  windows_build:
+    name: Build - Windows
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"
+
+    - name: Install Dependencies and Build Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt pyinstaller
+
+    - name: Build
+      run: |
+        cd src/
+#        pyinstaller --name "Metronome" --windowed --onefile --icon assets/icon.ico main.py
+        pyinstaller --name "Metronome" --windowed --onefile --icon assets/icon.ico main.py
+
+    - name: Upload the Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: Metronome Windows
+        path: "src/dist/Metronome/*"
+
+    - name: Zip
+      uses: papeloto/action-zip@v1
+      with:
+        files: "src/dist/Metronome/"
+        dest: Metronome-Windows.zip
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: Metronome-Windows.zip
