@@ -34,6 +34,36 @@ Item {
         border.color: Theme.placeholderColor()
     }
 
+    /*Rectangle {
+        id: bpmController
+        x: bgRect.radius + (Math.cos(playbackModel.bpm * (Math.PI / 180)) * bgRect.radius) - radius
+        y: bgRect.radius - (Math.sin(playbackModel.bpm * (Math.PI / 180)) * bgRect.radius) - radius
+        width: radius * 2
+        height: radius * 2
+        radius: 20
+        color: Theme.foregroundColor()
+    }
+
+    DragHandler {
+        id: bpmControllerHandler
+        target: bpmController
+
+        xAxis.enabled: false
+
+        onTranslationChanged: {
+            if (playbackModel.bpm <= 0) {
+                playbackModel.bpm = 1
+            } else {
+                playbackModel.bpm -= delta.y
+            }
+
+
+            bpmController.x = bgRect.radius + (Math.cos(playbackModel.bpm * (Math.PI / 180)) * bgRect.radius) - bpmController.radius
+            bpmController.y = bgRect.radius - (Math.sin(playbackModel.bpm * (Math.PI / 180)) * bgRect.radius) - bpmController.radius
+            console.log(bpmController.x)
+        }
+    }*/
+
     ColumnLayout {
         spacing: 8
         anchors.centerIn: parent
@@ -69,6 +99,15 @@ Item {
             root.hoveredChanged()
         }
     }
+
+    /*MouseArea {
+        id: bpmControllerMouseArea
+        anchors.fill: bpmController
+        drag {
+            target: bpmController
+            axis: Drag.YAxis
+        }
+    }*/
 
     states: [
         State {
