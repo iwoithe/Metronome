@@ -2,8 +2,7 @@ name: Build
 
 on:
   push:
-    # TODO: Expire all artifacts but the ones for the most recent commit for `main`
-    branches: [ main ]
+    branches: [ main ] # TODO: Expire all artifacts but the ones for the most recent commit for `main`
     tags:
       - "v*.*.*"
   pull_request:
