@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ main ] # TODO: Expire all artifacts but the ones for the most recent commit for `main`
+    branches: [ main ]
     tags:
       - "v*.*.*"
   pull_request:
@@ -33,7 +33,6 @@ jobs:
           --name "Metronome" \
           --windowed \
           --onefile \
-#          --icon assets/icon.ico \
           main.py
 
     - name: Upload the Build Artifact
@@ -78,7 +77,6 @@ jobs:
           --name "Metronome" \
           --windowed \
           --onefile \
-#          --icon assets/icon.ico \
           main.py
 
     - name: Upload the Build Artifact
@@ -119,7 +117,6 @@ jobs:
     - name: Build
       run: |
         cd src/
-#        pyinstaller --name "Metronome" --windowed --onefile --icon assets/icon.ico main.py
         pyinstaller --name "Metronome" --windowed --onefile --icon assets/icon.ico main.py
 
     - name: Upload the Build Artifact
