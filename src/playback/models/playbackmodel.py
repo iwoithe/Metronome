@@ -7,8 +7,6 @@ from pydispatch import dispatcher
 
 from .accentsmodel import AccentsModel
 
-from settings.models import TimeSignatureSettingsModel
-
 import share.resources
 
 
