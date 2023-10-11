@@ -65,13 +65,9 @@ Window {
 
         SettingsPage {
             id: settingsPage
+            Layout.fillWidth: true
             Layout.fillHeight: true
             visible: root.settingsPageToggled
-            // Use the following instead of Layout.fillWidth so the behavior animation works
-            implicitWidth: visible ? root.width - (mainLayout.anchors.leftMargin + controlsLayout.width + mainLayout.anchors.rightMargin) : 0
-
-            // TODO: Animate the settings page in *and* out
-            Behavior on implicitWidth { NumberAnimation { duration: 200 } }
         }
     }
 }
