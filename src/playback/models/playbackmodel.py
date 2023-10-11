@@ -26,6 +26,7 @@ class PlaybackModel(QObject):
         self.__intervalTimer = QTimer(self)
         self.__intervalTimer.timeout.connect(self.playSound)
 
+        # TODO: Make time signature its own singleton
         self.__timeSignature = TimeSignature(4, 4)
         self.__cursor = TimeSignatureCursor(self.__timeSignature)
 
