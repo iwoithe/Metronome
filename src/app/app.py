@@ -9,17 +9,13 @@ from .constants import Constants
 
 import appshell.resources
 import framework.uicomponents.resources
+import framework.ui
 import playback
 import settings
 
-from framework.ui import Theme
 
 
 class App:
-    # Singleton object definitions
-    # Must last the lifetime of this class or QML reference will be null
-    theme: Theme = Theme()
-
     def __init__(self) -> None:
         # TODO: Add a logging class
         logging.basicConfig(level=logging.DEBUG)
@@ -32,10 +28,7 @@ class App:
         self.engine: QQmlApplicationEngine = None
 
     def initTypes(self) -> None:
-        # TODO: Ideally want to use qmlRegisterUncreatableType for singleton objects
-        # qmlRegisterUncreatableType(Theme, "Metronome.Ui", 1, 0, "Theme", "Cannot create a Theme")
-        self.engine.rootContext().setContextProperty("Theme", self.theme)
-
+        framework.ui.registerTypes()
         playback.registerTypes()
         settings.registerTypes()
 

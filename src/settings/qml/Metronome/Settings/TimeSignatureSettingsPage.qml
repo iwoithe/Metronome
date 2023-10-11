@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import Metronome.Settings
+import Metronome.Ui
 import Metronome.UiComponents
 
 SettingsPageView {

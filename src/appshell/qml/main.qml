@@ -4,6 +4,7 @@ import QtQuick.Window
 
 import Metronome.Playback
 import Metronome.Settings
+import Metronome.Ui
 import Metronome.UiComponents
 
 Window {
@@ -19,15 +20,7 @@ Window {
 
     PlaybackModel {
         id: playbackModel
-        accentsModel: accentsModel
-    }
-
-    AccentsModel {
-        id: accentsModel
-        Component.onCompleted: {
-            accentsModel.setNumerator(4)
-            accentsModel.setAccent(1, true)
-        }
+        accentsModel: AccentsModel
     }
 
     RowLayout {
@@ -69,5 +62,10 @@ Window {
             Layout.fillHeight: true
             visible: root.settingsPageToggled
         }
+    }
+
+    Component.onCompleted: {
+        AccentsModel.setNumerator(4)
+        AccentsModel.setAccent(1, true)
     }
 }

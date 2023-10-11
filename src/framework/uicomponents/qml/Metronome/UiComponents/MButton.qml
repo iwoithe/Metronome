@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import Metronome.Ui
+
 Item {
     id: root
 

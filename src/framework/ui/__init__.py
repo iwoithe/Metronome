@@ -1,1 +1,1 @@
-from .theme import Theme
+from .uimodule import registerTypes
