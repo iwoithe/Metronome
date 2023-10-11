@@ -4,7 +4,6 @@ from pydispatch import dispatcher
 
 
 class AccentsModel(QObject):
-    # TODO: Receive changes from time signature
     def __init__(self) -> None:
         QObject.__init__(self)
 
@@ -22,6 +21,11 @@ class AccentsModel(QObject):
     @Slot(int, bool)
     def setAccent(self, beatNum: int, val: bool = True) -> None:
         self.__accentsData[beatNum] = val
+
+    @Slot(result=int)
+    def numerator(self) -> int:
+        # TODO: Remove this function in favor of using the singleton time signature
+        return len(self.__accentsData)
 
     @Slot(int)
     def setNumerator(self, val: int) -> None:
