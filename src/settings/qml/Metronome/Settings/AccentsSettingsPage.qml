@@ -23,7 +23,7 @@ SettingsPageView {
             color: Theme.foregroundColor()
             text: qsTr("Accents")
             font.bold: true
-            font.pixelSize: 18
+            font.pointSize: 18
         }
 
         GridView {

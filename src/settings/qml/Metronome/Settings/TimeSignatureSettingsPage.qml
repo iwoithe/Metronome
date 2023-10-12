@@ -22,7 +22,7 @@ SettingsPageView {
             color: Theme.foregroundColor()
             text: qsTr("Time signature")
             font.bold: true
-            font.pixelSize: 18
+            font.pointSize: 18
         }
 
         RowLayout {
@@ -38,6 +38,7 @@ SettingsPageView {
             Label {
                 text: settingsModel.numerator
                 color: Theme.foregroundColor()
+                font.pointSize: 14
             }
 
             MButton {
@@ -60,6 +61,7 @@ SettingsPageView {
             Label {
                 text: settingsModel.denominator
                 color: Theme.foregroundColor()
+                font.pointSize: 14
             }
 
             MButton {

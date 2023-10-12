@@ -26,7 +26,7 @@ SettingsPageView {
             color: Theme.foregroundColor()
             text: qsTr("BPM")
             font.bold: true
-            font.pixelSize: 18
+            font.pointSize: 18
         }
 
         RowLayout {
@@ -41,6 +41,7 @@ SettingsPageView {
             Label {
                 color: Theme.foregroundColor()
                 text: settingsModel.bpm
+                font.pointSize: 14
             }
 
             MButton {
