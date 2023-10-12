@@ -1,4 +1,5 @@
 from framework.types import TimeSignature, TimeSignatureCursor
+from tapper import Tapper
 
 from PySide6.QtCore import QTimer, Slot, Signal, Property, QObject, QUrl
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
@@ -20,6 +21,8 @@ class PlaybackModel(QObject):
         self.__accentsModel: AccentsModel = None
 
         self.__bpm = 120
+
+        self.__tapper = Tapper()
 
         self.__intervalTimer = QTimer(self)
         self.__intervalTimer.timeout.connect(self.playSound)
@@ -99,3 +102,7 @@ class PlaybackModel(QObject):
 
     def bpmToMilliseconds(self) -> float:
         return 60_000 / self.__bpm
+
+    @Slot()
+    def tap(self) -> None:
+        self.setBpm(self.__tapper.tap())

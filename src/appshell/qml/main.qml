@@ -46,6 +46,7 @@ Window {
             MButton {
                 id: tapButton
                 text: qsTr("Tap")
+                onClicked: playbackModel.tap()
             }
 
             MButton {
