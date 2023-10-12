@@ -117,7 +117,7 @@ jobs:
     - name: Build
       run: |
         cd src/
-        pyinstaller --name "Metronome" --windowed --onefile __main__.py --hidden-import appshell
+        pyinstaller --name "Metronome" --windowed --onefile __main__.py --hidden-import appshell --hidden-import appshell.resources --hidden-import framework.types --hidden-import framework.ui --hidden-import uicomponents --hidden-import uicomponents.resources --hidden-import playback --hidden-import settings --hidden-import share.resources --hidden-import tapper
 
     - name: Upload the Build Artifact
       uses: actions/upload-artifact@v3.0.0
