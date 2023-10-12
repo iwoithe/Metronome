@@ -1,6 +1,7 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
 <qresource>
+    <file>qml/Metronome/Settings/AboutSettingsPage.qml</file>
     <file>qml/Metronome/Settings/AccentsSettingsPage.qml</file>
     <file>qml/Metronome/Settings/BpmSettingsPage.qml</file>
     <file>qml/Metronome/Settings/qmldir</file>

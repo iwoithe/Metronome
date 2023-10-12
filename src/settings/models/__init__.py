@@ -1,3 +1,4 @@
+from .aboutsettingsmodel import AboutSettingsModel
 from .accentssettingsmodel import AccentsSettingsModel
 from .bpmsettingsmodel import BpmSettingsModel
 from .settingsmodel import SettingsModel
