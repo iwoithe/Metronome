@@ -10,129 +10,55 @@ on:
   workflow_dispatch:
 
 jobs:
-  linux_build_onefile:
-    name: Build - Linux (one file)
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.10"
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          architecture: 'x64'
+          cache: 'pip'
+          cache-dependency-path: |
+            **/requirements*.txt
 
-    - name: Install Dependencies and Build Dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install -r requirements.txt pyinstaller
-    - name: Build
-      run: |
-        cd src/
-        pyinstaller \
-          --name "Metronome" \
-          --windowed \
-          --onefile \
-          __main__.py
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
 
-    - name: Upload the Build Artifact
-      uses: actions/upload-artifact@v3.0.0
-      with:
-        name: Metronome Linux
-        path: "src/dist/*"
+      - name: Change Directory
+        run: |
+          - cd src
 
-    - name: Zip
-      uses: papeloto/action-zip@v1
-      with:
-        files: "src/dist/"
-        dest: Metronome-Linux.zip
+      - uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: __main__.py
+          onefile: true
+          enable-plugins: pyside6
+          disable-console: true
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: Metronome-Linux.zip
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ runner.os }} Build
+          path: |
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
 
-  macos_build_onefile:
-    name: Build - macOS (one file)
-    runs-on: macos-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.10"
-
-    - name: Install Dependencies and Build Dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install -r requirements.txt pillow pyinstaller
-
-    - name: Build
-      run: |
-        cd src/
-        pyinstaller \
-          --name "Metronome" \
-          --windowed \
-          --onefile \
-          __main__.py
-
-    - name: Upload the Build Artifact
-      uses: actions/upload-artifact@v3.0.0
-      with:
-        name: Metronome macOS
-        path: "src/dist/*"
-
-    - name: Zip
-      uses: papeloto/action-zip@v1
-      with:
-        files: "src/dist/"
-        dest: Metronome-macOS.zip
-
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: Metronome-macOS.zip
-
-  windows_build_onefile:
-    name: Build - Windows (one file)
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.10"
-
-    - name: Install Dependencies and Build Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r requirements.txt pyinstaller
-
-    - name: Build
-      run: |
-        cd src/
-        pyinstaller --name "Metronome" --windowed --onefile __main__.py --hidden-import appshell --hidden-import appshell.resources --hidden-import framework.types --hidden-import framework.ui --hidden-import uicomponents --hidden-import uicomponents.resources --hidden-import playback --hidden-import settings --hidden-import share.resources --hidden-import tapper
-
-    - name: Upload the Build Artifact
-      uses: actions/upload-artifact@v3.0.0
-      with:
-        name: Metronome Windows
-        path: "src/dist/*"
-
-    - name: Zip
-      uses: papeloto/action-zip@v1
-      with:
-        files: "src/dist/"
-        dest: Metronome-Windows.zip
-
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: Metronome-Windows.zip
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
