@@ -35,7 +35,7 @@ jobs:
 
       - name: Change Directory
         run: |
-          - cd src
+          cd src
 
       - uses: Nuitka/Nuitka-Action@main
         with:
