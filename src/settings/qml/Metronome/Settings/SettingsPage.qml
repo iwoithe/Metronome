@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import Metronome.Settings
+import Metronome.Ui
 import Metronome.UiComponents
 
 Item {
@@ -10,6 +11,12 @@ Item {
 
     property int buttonGapY: 20
     property int transitionDuration: 200
+
+    Rectangle {
+        id: bgRect
+        anchors.fill: parent
+        color: Theme.panelColor()
+    }
 
     StackView {
         id: settingsPageView

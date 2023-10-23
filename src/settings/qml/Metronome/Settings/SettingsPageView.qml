@@ -14,7 +14,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: Theme.backgroundColor()
+        color: Theme.panelColor()
     }
 
     MButton {

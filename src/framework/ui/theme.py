@@ -7,6 +7,7 @@ class Colors:
     DARK_FOREGROUND_COLOR = "#E8E8E8"
     DARK_INACTIVE_COLOR = "#5A5A5A"
     DARK_INVERTED_FOREGROUND_COLOR = "#000114"
+    DARK_PANEL_COLOR = "#0F0F1A"
     DARK_PLACEHOLDER_COLOR = "#5A5A5A"
 
     LIGHT_ACTIVE_COLOR = "#A3A8FF"
@@ -14,6 +15,7 @@ class Colors:
     LIGHT_FOREGROUND_COLOR = "#000114"
     LIGHT_INACTIVE_COLOR = "#5A5A5A"
     LIGHT_INVERTED_FOREGROUND_COLOR = "#000114"
+    LIGHT_PANEL_COLOR = "#E5E5F0"
     LIGHT_PLACEHOLDER_COLOR = "#5A5A5A"
 
 
@@ -56,6 +58,13 @@ class Theme(QObject):
             return Colors.DARK_INVERTED_FOREGROUND_COLOR
         else:
             return Colors.LIGHT_INVERTED_FOREGROUND_COLOR
+
+    @Slot(result=str)
+    def panelColor(self) -> str:
+        if self.__isDarkMode:
+            return Colors.DARK_PANEL_COLOR
+        else:
+            return Colors.LIGHT_PANEL_COLOR
 
     @Slot(result=str)
     def placeholderColor(self) -> str:
