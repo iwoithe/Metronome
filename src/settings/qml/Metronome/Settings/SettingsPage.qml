@@ -77,6 +77,7 @@ Item {
                     text: title
                     onClicked: {
                         settingsPageLoader.source = qmlPath
+                        settingsPageLoader.item.title = title
                         settingsPageView.push(settingsPageLoader)
                     }
                 }

@@ -9,9 +9,7 @@ import Metronome.UiComponents
 SettingsPageView {
     id: root
 
-    AboutSettingsModel {
-        id: settingsModel
-    }
+    model: AboutSettingsModel {}
 
     ColumnLayout {
         anchors.centerIn: parent
@@ -19,14 +17,7 @@ SettingsPageView {
 
         Label {
             color: Theme.foregroundColor()
-            text: qsTr("About")
-            font.bold: true
-            font.pointSize: 18
-        }
-
-        Label {
-            color: Theme.foregroundColor()
-            text: settingsModel.appName + " v" + settingsModel.appVersion
+            text: root.model.appName + " v" + root.model.appVersion
             font.pointSize: 14
         }
 
@@ -45,7 +36,7 @@ SettingsPageView {
 
         Label {
             color: Theme.foregroundColor()
-            text: qsTr("Made with ❤️ by %1").arg(settingsModel.appAuthor)
+            text: qsTr("Made with ❤️ by %1").arg(root.model.appAuthor)
             font.pointSize: 14
         }
     }

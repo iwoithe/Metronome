@@ -9,20 +9,33 @@ import Metronome.UiComponents
 SettingsPageView {
     id: root
 
-    TimeSignatureSettingsModel {
-        id: settingsModel
-    }
+    model: TimeSignatureSettingsModel {}
 
     ColumnLayout {
         anchors.centerIn: parent
         spacing: 20
 
-        Label {
+        RowLayout {
+            spacing: 20
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            color: Theme.foregroundColor()
-            text: qsTr("Time signature")
-            font.bold: true
-            font.pointSize: 18
+
+            MButton {
+                Layout.preferredWidth: 60
+                text: qsTr("-")
+                onClicked: root.model.numerator -= 1
+            }
+
+            Label {
+                text: root.model.numerator
+                color: Theme.foregroundColor()
+                font.pointSize: 14
+            }
+
+            MButton {
+                Layout.preferredWidth: 60
+                text: qsTr("+")
+                onClicked: root.model.numerator += 1
+            }
         }
 
         RowLayout {
@@ -32,11 +45,11 @@ SettingsPageView {
             MButton {
                 Layout.preferredWidth: 60
                 text: qsTr("-")
-                onClicked: settingsModel.numerator -= 1
+                onClicked: root.model.denominator -= 1
             }
 
             Label {
-                text: settingsModel.numerator
+                text: root.model.denominator
                 color: Theme.foregroundColor()
                 font.pointSize: 14
             }
@@ -44,33 +57,10 @@ SettingsPageView {
             MButton {
                 Layout.preferredWidth: 60
                 text: qsTr("+")
-                onClicked: settingsModel.numerator += 1
-            }
-        }
-
-        RowLayout {
-            spacing: 20
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-            MButton {
-                Layout.preferredWidth: 60
-                text: qsTr("-")
-                onClicked: settingsModel.denominator -= 1
-            }
-
-            Label {
-                text: settingsModel.denominator
-                color: Theme.foregroundColor()
-                font.pointSize: 14
-            }
-
-            MButton {
-                Layout.preferredWidth: 60
-                text: qsTr("+")
-                onClicked: settingsModel.denominator += 1
+                onClicked: root.model.denominator += 1
             }
         }
     }
 
-    Component.onCompleted: settingsModel.load()
+    Component.onCompleted: root.model.load()
 }

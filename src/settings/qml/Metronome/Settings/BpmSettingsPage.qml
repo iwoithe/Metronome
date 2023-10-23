@@ -11,46 +11,32 @@ SettingsPageView {
 
     property int bpmChangeAmount: 1
 
-    BpmSettingsModel {
-        id: settingsModel
-    }
+    model: BpmSettingsModel {}
 
     // TODO: Add option to choose tempo from tempo markings, e.g. allegro, moderato etc.
 
-    ColumnLayout {
+    RowLayout {
         anchors.centerIn: parent
         spacing: 20
 
-        Label {
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            color: Theme.foregroundColor()
-            text: qsTr("BPM")
-            font.bold: true
-            font.pointSize: 18
+        MButton {
+            Layout.preferredWidth: 60
+            text: "-"
+            onClicked: root.model.bpm -= root.bpmChangeAmount
         }
 
-        RowLayout {
-            spacing: 20
+        Label {
+            color: Theme.foregroundColor()
+            text: root.model.bpm
+            font.pointSize: 14
+        }
 
-            MButton {
-                Layout.preferredWidth: 60
-                text: "-"
-                onClicked: settingsModel.bpm -= root.bpmChangeAmount
-            }
-
-            Label {
-                color: Theme.foregroundColor()
-                text: settingsModel.bpm
-                font.pointSize: 14
-            }
-
-            MButton {
-                Layout.preferredWidth: 60
-                text: "+"
-                onClicked: settingsModel.bpm += root.bpmChangeAmount
-            }
+        MButton {
+            Layout.preferredWidth: 60
+            text: "+"
+            onClicked: root.model.bpm += root.bpmChangeAmount
         }
     }
 
-    Component.onCompleted: settingsModel.load()
+    Component.onCompleted: root.model.load()
 }
